@@ -1,0 +1,5 @@
+#!/bin/bash
+cd "`dirname"$0"`"
+echo "You will need root permissions to install."
+sudo cp -r avr-make /usr/local/bin/
+echo "Installed!"

@@ -1,0 +1,24 @@
+#!/bin/bash
+
+echo "[ i ] Compiling using avr-gcc...";
+avr-gcc -mmcu=atmega644p -DF_CPU=12000000 -Os $@ -o elf.elf -std=c99 >> /dev/null 2>&1;
+if [ -f elf.elf ] 
+then 
+	echo "[ i ] Successfully compiled.";
+	echo "[ i ] Generating target hex...";
+	avr-objcopy -O ihex elf.elf hex.hex >> /dev/null 2>&1;
+	if [ -f hex.hex ] 
+	then
+		echo "[ i ] Successfully generated.";
+		echo -n "[ ! ] Verify that the bootloader is activated and press enter."
+		read activated
+		echo "[ i ] Sending to El Matto over USB..."
+		avrdude -c usbasp -p m644p -U flash:w:hex.hex -q -q >> /dev/null 2>&1;
+		rm elf.elf hex.hex;
+		echo "[ i ] Finished.";
+	else
+		echo -e "[ E ] The target code couldn't be generated.";
+	fi
+else
+	echo -e "\[ E ] Your code didn't compile. Use avr-gcc.";
+fi
