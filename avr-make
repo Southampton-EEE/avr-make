@@ -12,7 +12,7 @@ then
 		echo "[ i ] Successfully generated.";
 		echo -n "[ ! ] Verify that the bootloader is activated and press enter."
 		read activated
-		echo "[ i ] Sending to El Matto over USB..."
+		echo "[ i ] Sending to Il Matto over USB..."
 		avrdude -c usbasp -p m644p -U flash:w:hex.hex -q -q >> /dev/null 2>&1;
 		rm elf.elf hex.hex;
 		echo "[ i ] Finished.";

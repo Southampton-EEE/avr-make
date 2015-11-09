@@ -1,6 +1,6 @@
 # avr-make
 
-A build routine for UoS's El Matto board.
+A build routine for UoS's Il Matto board.
 
 ## Uploading to the Board
 
