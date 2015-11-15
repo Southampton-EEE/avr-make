@@ -14,8 +14,12 @@ It will then prompt you for your password.
 
 Run like so
 
-    avr-make file.c
+    avr-make file1.c file2.c
 
-You will be prompted to verify that you have loaded the bootloader and have the Il Matto plugged in.
+Before running make sure the Il Matto is plugged in and the bootloader is activated.
 
 Compiles using `avr-gcc`, then uses `avr-objcopy` before sending the file over USB with `avrdude`. Note that this package dosn't include these dependancies.
+
+## Errors
+
+In the latest version when an error is thrown by one of the above packages it is now displayed.
