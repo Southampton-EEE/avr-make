@@ -14,7 +14,7 @@ then
 		echo "[ :) ] Successfully generated.";
 		echo "[ :) ] Sending to Il Matto over USB...";
 		avrdude -c usbasp -p m644p -U flash:w:temp.hex.hex >> /dev/null 2>&1;
-		echo "[ :) ] Finished. See you're Il Matto for build results.";
+		echo "[ :) ] Finished. See your Il Matto for build results.";
 	else
 		echo -e "[ :( ] The target code couldn't be generated.";
 		cat temp.avr-objcopy.output;
