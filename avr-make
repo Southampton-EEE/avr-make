@@ -10,7 +10,11 @@ then
 	echo "[ :) ] Generating target hex...";
 	touch "temp.avr-objcopy.output";
 	avr-objcopy -O ihex temp.elf.elf temp.hex.hex >> temp.avr-objcopy.output 2>&1;
+<<<<<<< HEAD
 	if [ -f temp.hex.hex ] 
+=======
+	if [ -f temp.hex.hex ]
+>>>>>>> c71aaa468fe8a0e5c3e860996c158d729d821910
 	then
 		echo "[ :) ] Successfully generated.";
 		echo "[ :) ] Sending to Il Matto over USB...";
