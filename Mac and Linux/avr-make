@@ -11,7 +11,7 @@ then
 	touch "temp.avr-objcopy.output";
 	avr-objcopy -O ihex temp.elf.elf temp.hex.hex >> temp.avr-objcopy.output 2>&1;
 	if [ -f temp.hex.hex ]
-	then
+T	then
 		echo "[ :) ] Successfully generated.";
 		echo "[ :) ] Sending to Il Matto over USB...";
 		avrdude -c usbasp -p m644p -U flash:w:temp.hex.hex >> /dev/null 2>&1;
