@@ -1,6 +1,5 @@
 #!/bin/bash
 
-rm -f temp.elf.elf temp.hex.hex >> /dev/null 2>&1
 echo "[ :) ] Compiling using avr-gcc...";
 touch "temp.avr-gcc.output";
 avr-gcc -mmcu=atmega644p -DF_CPU=12000000 -Os $@ -Wall -o temp.elf.elf -std=c99 >> temp.avr-gcc.output 2>&1;
@@ -10,12 +9,12 @@ then
 	echo "[ :) ] Generating target hex...";
 	touch "temp.avr-objcopy.output";
 	avr-objcopy -O ihex temp.elf.elf temp.hex.hex >> temp.avr-objcopy.output 2>&1;
-	if [ -f temp.hex.hex ]
-T	then
+	if [ -f temp.hex.hex ] 
+	then
 		echo "[ :) ] Successfully generated.";
 		echo "[ :) ] Sending to Il Matto over USB...";
 		avrdude -c usbasp -p m644p -U flash:w:temp.hex.hex >> /dev/null 2>&1;
-		echo "[ :) ] Finished. See your Il Matto for build results.";
+		echo "[ :) ] Finished. See you're Il Matto for build results.";
 	else
 		echo -e "[ :( ] The target code couldn't be generated.";
 		cat temp.avr-objcopy.output;
