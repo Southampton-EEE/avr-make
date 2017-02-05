@@ -33,9 +33,10 @@ MAKEFLAGS += --silent
 SOURCE = $(wildcard $(SRC)/*.c)
 OBJECT = $(patsubst %,$(BIN)/%,$(notdir $(SOURCE:.c=.o)))
 
-all: dir $(TARGET).hex
+all: $(TARGET).hex
 
 $(BIN)/%.o: $(SRC)/%.c
+	test -d $(BIN) || mkdir $(BIN)
 	@printf "\033[92m%-15s %s\n\033[0m" "Compiling..." "$@"
 	$(CC) $(CFLAGS) -c -o $@ $<
 
@@ -61,7 +62,3 @@ fuses:
 
 show_fuses:
 	$(AVRDUDE) -nv
-
-dir:
-	@printf "\033[92m%-15s %s\n\033[0m" "Creating..." "$(BIN)/"
-	@mkdir -p $(BIN)
