@@ -57,8 +57,7 @@ flash: $(TARGET).hex
 
 fuses:
 	@printf "\033[92m%-15s %s\n\033[0m" "Set Fuses..." "lfuse:$(LFUSE) hfuse:$(HFUSE) efuse:$(EFUSE)"
-	FUSE = -U lfuse:w:$(LFUSE):m -U hfuse:w:$(HFUSE):m -U efuse:w:$(EFUSE):m
-	$(AVRDUDE) $(FUSE)
+	$(AVRDUDE) -U lfuse:w:$(LFUSE):m -U hfuse:w:$(HFUSE):m -U efuse:w:$(EFUSE):m
 
 show_fuses:
 	$(AVRDUDE) -nv
