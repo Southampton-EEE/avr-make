@@ -16,7 +16,6 @@
 
 ```
 $ make
-Creating...     bin/
 Compiling...    bin/lib_file.o
 Compiling...    bin/main.o
 Linking...      bin/main.elf bin/lib_file.o bin/main.o
