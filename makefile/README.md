@@ -16,17 +16,18 @@
 
 ```
 $ make
-Compiling...    bin/lib_file.o
-Compiling...    bin/main.o
-Linking...      bin/main.elf bin/lib_file.o bin/main.o
-Building...     main.hex
+avr-gcc -mmcu=atmega644p -Os -Wall -std=c99 -DF_CPU=12000000 -I inc/ -MM src/main.c src/lib_file.c > Makefile.deps
+avr-gcc -mmcu=atmega644p -Os -Wall -std=c99 -DF_CPU=12000000 -I inc/   -c -o src/main.o src/main.c
+avr-gcc -mmcu=atmega644p -Os -Wall -std=c99 -DF_CPU=12000000 -I inc/   -c -o src/lib_file.o src/lib_file.c
+avr-gcc -o main.elf src/main.o src/lib_file.o
+avr-objcopy -O ihex main.elf main.hex
 
 $ make fuses 
-Set Fuses...    lfuse:0xff hfuse:0x9c efuse:0xff
+avrdude -c usbasp -p atmega644p -U lfuse:w:0xff:m -U hfuse:w:0x9c:m -U efuse:w:0xff:m
 
 $ make flash 
-Flashing...     atmega644p usbasp 12000000
+avrdude -c usbasp -p atmega644p -U flash:w:main.hex
 
 $ make clean 
-Cleaning...     bin/ main.hex
+rm src/*.o main.elf main.hex Makefile.deps
 ```
